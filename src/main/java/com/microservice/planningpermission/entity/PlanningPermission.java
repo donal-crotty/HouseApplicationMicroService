@@ -1,13 +1,19 @@
-package com.houseapplication.microservice.houseapplications.entity;
+package com.microservice.planningpermission.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-public class HouseApplication implements Serializable {
+@Table(name = "planning_permission")
+public class PlanningPermission implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int applicationId;
+    private int referenceId;
 
     @Column(nullable = false)
     private String applicantFirstName;
@@ -24,24 +30,21 @@ public class HouseApplication implements Serializable {
     @Column(nullable = false)
     private int applicationTypeId; // Residential = 0; Commercial= 1
 
-    public HouseApplication(){
-
-    }
-//
-////    public HouseApplication(int applicationID, String applicantFirstName, String applicantLastName, float houseArea, String applicationStatus) {
-////        this.applicationID = applicationID;
-////        this.applicantFirstName = applicantFirstName;
-////        this.applicantLastName = applicantLastName;
-////        this.houseArea = houseArea;
-////        this.applicationStatus = applicationStatus;
-////    }
-    public HouseApplication(int applicationId) {
-        this.applicationId = applicationId;
+    public PlanningPermission(){
 
     }
 
-    public int getApplicationId() {
-        return applicationId;
+    public PlanningPermission(int referenceId, String applicantFirstName, String applicantLastName, double houseArea, String applicationStatus, int applicationTypeId) {
+        this.referenceId = referenceId;
+        this.applicantFirstName = applicantFirstName;
+        this.applicantLastName = applicantLastName;
+        this.houseArea = houseArea;
+        this.applicationStatus = applicationStatus;
+        this.applicationTypeId = applicationTypeId;
+    }
+
+    public int getReferenceId() {
+        return referenceId;
     }
 
     public String getApplicantFirstName() {
@@ -84,4 +87,3 @@ public class HouseApplication implements Serializable {
         this.applicationTypeId = applicationTypeId;
     }
 }
-
